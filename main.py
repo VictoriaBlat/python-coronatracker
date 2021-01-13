@@ -31,11 +31,19 @@ class Request():
 
     def printData(self): #visualisierung
         print("Land:",  self.range[0]['Country'])
+        aktive=[]
+        bestätigte=[]
+        gestorbene=[]
+        dates=[]
         for day in self.range:
-
+            aktive.append(day['Active'])
+            bestätigte.append(day['Confirmed'])
+            gestorbene.append(day['Deaths'])
+            dates.append((day["Date"]).split("T")[0][5:])
             print("Datum:", (day["Date"]).split("T")[0],"Aktive Fälle:", day['Active'],"Bestätigte Fälle:", day['Confirmed'], "Es sind gestorben:", day['Deaths'], "Genossen:",
                   day['Recovered'])
            # print(len(self.range))  # printed die datensätze für den Zeintraum und check nochmal wie viele es sind
+        return {"aktive":aktive,"bestätigte":bestätigte,"gestorbene":gestorbene,"dates":dates}
 
 
 """abfrage1 = Request("spain",4)
